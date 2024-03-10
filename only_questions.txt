@@ -23,3 +23,17 @@ c. application 3 should always start after application 2 is Ready
 Follow up:
 1. How will you design a check mechanism for the applications in such a way that restarts and schedular reschedules dont break the dependence requirements
 2. How will you plan to incorporate such check mechanism with CD tools where deployments are gitops driven
+
+Question 6 : Please explain your understanding of multilayer switches and what Layer 4 LAN switching does.
+Follow up:
+1. Which component of Kubernetes using this technology and how ?
+
+Question 7 : You have 3 applications that make a solution. UI application, business application and database application. All the three applications are installable stand alone and connect with one another via configurations and endpoints. UI application needs 100MB and 1CPU, business application needs 200MB and 2CPU while the database application needs 300MB and 3CPU for every 1000 users payload. So think of this as 1:2:3 ratio in terms of resources.
+
+How will you design deployment the solution on the following infrastructures and also make the sure the resource ratios are maintained:
+1. On VM
+2. On docker setup
+3. On k8s setup
+
+Follow up:
+Design the most optional solution, keeping the production cost as priority.
