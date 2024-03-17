@@ -37,3 +37,11 @@ How will you design deployment the solution on the following infrastructures and
 
 Follow up:
 Design the most optional solution, keeping the production cost as priority.
+
+Question 8 : One of the main activity for devops enginner is to maintain the software versions of the platform. However, updating platform without having a downtime or customer impact is hard to achive. How are you updating your platform ?
+How will you design a update statergy for k8s platform.
+
+Follow up:
+How do you plan for fail safe migration.
+1. For example, during the update, the updation makes platform unstable or unresposive.
+2. Migrating from x version to x+1 version, how will you evalivate that the plugings ( network, storage, deamons ) wont break the updation.

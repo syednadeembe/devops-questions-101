@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      initContainers:
+      - name: init-app1
+        image: app1-image
+        # Add logic in this container to ensure that application 1 is ready before proceeding
+      - name: init-app2
+        image: app2-image
+        # Add logic in this container to ensure that application 2 is ready before proceeding
+      containers:
+      - name: app3-container
+        image: app3-image
+        # Add logic in this container to start application 3
