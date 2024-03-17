@@ -1,4 +1,4 @@
-**Question** 1 : In Linux, the Nice command is used to prioritize the execution of processes.
+__Question__ 1 : In Linux, the Nice command is used to prioritize the execution of processes.
 a. Tell me more about it and if given a choice where do you think it will be useful in your existing project ?
 b. If you have to prioritize a specific workloads in a dockerd or k8s environment, how will you do it similarly to the native Nice command of Linux ?
 
