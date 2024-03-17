@@ -69,7 +69,7 @@ Kube-proxy is responsible for implementing a form of Layer 4 load balancing to d
 
 Note : Read this if you are interested (https://www.haproxy.com/blog/layer-4-and-layer-7-proxy-mode https://opensource.com/article/22/6/kubernetes-networking-fundamentals)
 
-****Question**** 7 : You have 3 applications that make a solution. UI application, business application and database application. All the three applications are installable stand alone and connect with one another via configurations and endpoints. UI application needs 100MB and 1CPU, business application needs 200MB and 2CPU while the database application needs 300MB and 3CPU for every 1000 users payload. So think of this as 1:2:3 ratio in terms of resources.
+**Question** 7 : You have 3 applications that make a solution. UI application, business application and database application. All the three applications are installable stand alone and connect with one another via configurations and endpoints. UI application needs 100MB and 1CPU, business application needs 200MB and 2CPU while the database application needs 300MB and 3CPU for every 1000 users payload. So think of this as 1:2:3 ratio in terms of resources.
 
 How will you design deployment the solution on the following infrastructures and also make the sure the resource ratios are maintained:
 1. On VM
