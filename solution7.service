@@ -1,0 +1,14 @@
+[Unit]
+Description=My Application
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/path/to/myapp
+Restart=always
+RestartSec=3
+User=myuser
+Group=mygroup
+LimitAS=100M   # Limit address space to 100MB
+CPUShares=512  # Set CPU shares to 512 (out of 1024)
+MemoryLimit=200M  # Limit memory to 200MB

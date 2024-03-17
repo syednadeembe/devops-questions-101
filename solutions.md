@@ -81,22 +81,7 @@ Design the most optional solution, keeping the production cost as priority.
 
 Solution : On VM, the easy options is to have either separate vms for the setup, or install docker on a single vm and then define the conditions at the docker level. This will also be the most efficient approach, however this wont be practical if you are expecting to auto scale the deployments.
 If we keep as side scaling, then we can even use tools like systemd to manage and control the resources allocated to each application at the linux level and this wont even need us to have docker. 
-Something like this :
-
-[Unit]
-Description=My Application
-After=network.target
-
-[Service]
-Type=simple
-ExecStart=/path/to/myapp
-Restart=always
-RestartSec=3
-User=myuser
-Group=mygroup
-LimitAS=100M   # Limit address space to 100MB
-CPUShares=512  # Set CPU shares to 512 (out of 1024)
-MemoryLimit=200M  # Limit memory to 200MB
+Something like this : solution7.service
 
 On docker and on k8s this is very simple to achieve, So i will let you answer that :)
 
