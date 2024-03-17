@@ -1,4 +1,4 @@
-__Question__ 1 : In Linux, the Nice command is used to prioritize the execution of processes.
+<u>**Question</u> 1 : In Linux, the Nice command is used to prioritize the execution of processes.
 a. Tell me more about it and if given a choice where do you think it will be useful in your existing project ?
 b. If you have to prioritize a specific workloads in a dockerd or k8s environment, how will you do it similarly to the native Nice command of Linux ?
 
@@ -10,7 +10,7 @@ In my existing project, I was using this for the long running back ground proces
 
 For docker and k8s the priority is not a relative terms, there is no guarantee. In Docker we can specify the requirements with the run command and in K8s we have resources block in the pod manifest to set requests and limits, however they are subject to the availability of the underlying nodes and we cant give numbers "-20 to 19" here to set the relative priority within the same kind of objects.
 
-**Question** 2 : What do you know about LINUX Signals, how does Inter-Process Communication happen with uses of signals.
+<u>**Question</u> 2 : What do you know about LINUX Signals, how does Inter-Process Communication happen with uses of signals.
 Follow-up : How is it related to Kubernetes pod status and to Docker entry points ?
 
 Solution : There are the interrupt commands that the linux process are able to send to the one another. We dont create a new signal we use the existing list that Linux provides (64 of them). 
@@ -22,7 +22,7 @@ For docker, signals have a huge significance. By using the signals the underlyin
 Note : (remember the interviewer wont as you the names or the functions of all the signals) you can find the details here : https://faculty.cs.niu.edu/~hutchins/csci480/signals.htm
 
 
-**Question** 3 :What are the kubernetes probs that you have used in your deployments, explain their importance and pre-requisites for each one.
+<u>**Question</u> 3 :What are the kubernetes probs that you have used in your deployments, explain their importance and pre-requisites for each one.
 Follow up:
 1. What are the check mechanisms that you used while implementing the probs apart form the httpGet
 2. Probs seem very useful, Why doesn't Kubernetes mandate applications to have default probs ?
@@ -36,7 +36,7 @@ Probs are very useful, however at the end of the day, they are also processes an
 
 Note : The startup prob is similar to a liveness probe but it only run once when the container is first started. So it only makes sense to have this if your application is having longer initialDelaySeconds
 
-**Question** 4 : We spoke about IPC socket or Unix domain socket in **Question** 2 (find that **Question** in previous posts), explain how inter-process communication workflow works in Docker Architecture.
+<u>**Question</u> 4 : We spoke about IPC socket or Unix domain socket in <u>**Question</u> 2 (find that <u>**Question</u> in previous posts), explain how inter-process communication workflow works in Docker Architecture.
 Follow up:
 1. What is the role of docker.sock file ?
 2. How Docker socket work ?
@@ -46,7 +46,7 @@ This is an Unix Sockets (docker.sock): The Docker daemon exposes a Unix socket f
 
 There are some other IPC Mechanisms like Shared Volumes and Network Communication that you can also explain if you have used them.
 
-**Question** 5 : Design a Kubernetes deployment setup where you have 3 applications that need to run in HA to create a solution. However the applications have starting and running dependencies and requirements.
+<u>**Question</u> 5 : Design a Kubernetes deployment setup where you have 3 applications that need to run in HA to create a solution. However the applications have starting and running dependencies and requirements.
 a. application 1 should always start first
 b. application 2 should always start after application 1 is Ready
 c. application 3 should always start after application 2 is Ready
@@ -58,7 +58,7 @@ Solution : This was answered here : https://www.linkedin.com/feed/update/urn:li:
 
 Note : They key to this question is to not over complicate and over engineer the solution. I have attached a deployment for your reference to check this : solution5.yaml
 
-**Question** 6 : Please explain your understanding of multilayer switches and what Layer 4 LAN switching does.
+<u>**Question</u> 6 : Please explain your understanding of multilayer switches and what Layer 4 LAN switching does.
 Follow up:
 1. Which component of Kubernetes using this technology and how ?
 
@@ -69,7 +69,7 @@ Kube-proxy is responsible for implementing a form of Layer 4 load balancing to d
 
 Note : Read this if you are interested (https://www.haproxy.com/blog/layer-4-and-layer-7-proxy-mode https://opensource.com/article/22/6/kubernetes-networking-fundamentals)
 
-**Question** 7 : You have 3 applications that make a solution. UI application, business application and database application. All the three applications are installable stand alone and connect with one another via configurations and endpoints. UI application needs 100MB and 1CPU, business application needs 200MB and 2CPU while the database application needs 300MB and 3CPU for every 1000 users payload. So think of this as 1:2:3 ratio in terms of resources.
+<u>**Question</u> 7 : You have 3 applications that make a solution. UI application, business application and database application. All the three applications are installable stand alone and connect with one another via configurations and endpoints. UI application needs 100MB and 1CPU, business application needs 200MB and 2CPU while the database application needs 300MB and 3CPU for every 1000 users payload. So think of this as 1:2:3 ratio in terms of resources.
 
 How will you design deployment the solution on the following infrastructures and also make the sure the resource ratios are maintained:
 1. On VM
