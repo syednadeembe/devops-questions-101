@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx1
+  template:
+    metadata:
+      labels:
+        app: nginx1
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: devops-with-syed-worker
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service-1
+spec:
+  selector:
+    app: nginx1
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
+

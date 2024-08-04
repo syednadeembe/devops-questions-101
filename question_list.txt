@@ -1,0 +1,5 @@
+How does the traffic flow from one pod to another in k8s 
+What is the role of coredns 
+What does kube-proxy do in the k8s cluster 
+Explain how CNI works 
+How does NAT happen in k8s 
