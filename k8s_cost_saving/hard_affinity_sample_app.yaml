@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-hard-affinity
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app-hard
+  template:
+    metadata:
+      labels:
+        app: my-app-hard
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-type
+                    operator: In
+                    values:
+                      - on-demand
+                      - spot
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - my-app-hard  # Avoids same app on same node
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: my-container
+          image: nginx
+          ports:
+            - containerPort: 80
