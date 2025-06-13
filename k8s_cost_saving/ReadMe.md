@@ -7,7 +7,7 @@ kubectl label node <spot-node-name> node-type=spot
 kubectl apply -f hard_affinity_sample_app.yaml
 kubectl apply -f soft_affinity_sample_app.yaml
 
-### install and use opensource from UI
+### install and use opencost from UI
 ### prerequisite : you need to have prometheus 
 
 helm install prometheus --repo https://prometheus-community.github.io/helm-charts prometheus \
