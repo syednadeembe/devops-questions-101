@@ -1,95 +1,49 @@
 ###Kubernetes Architecture and Resource Management
-
 Why do we need PV, PVC, and StorageClass separately in Kubernetes? What problems would occur if we attached storage directly to pods?
-
 What happens in production if any of PV, PVC, or StorageClass is misconfigured or missing?
-
 What should be the approach to determine resource requests and limits? How do you balance performance, cost, and stability?
-
 What happens if we keep adding pods without considering node capacity? What breaks first?
-
 How to approach capacity planning for a Kubernetes cluster?
-
 Though the solutions architect decides nodes and clusters, how can we understand the resources used and why those were chosen (e.g., databases, ASG)?
-
 Nodes affinity and anti-nodes affinity — when and why should we use them?
-
 ###Security and Compliance
-
-Why does RBAC exist in Kubernetes? What happens if we don’t configure it properly?
-
+Why does RBAC exist in Kubernetes? What happens if we don’t configure it properly? (Check again)
 Where is RBAC configured — at namespace level, cluster level, or both? When to use which?
-
-What security risks exist at the pod level? Why can't we rely only on cluster-level security?
-
+What security risks exist at the pod level? Why can't we rely only on cluster-level security? 
 What happens if all pods are run as root? What real-world attacks become possible?
-
 How do we secure a Kubernetes cluster?
-
 What tools are used to scan Kubernetes YAML files for security?
-
-How are certificates managed in Kubernetes? What is the full lifecycle of certificates?
-
+How are certificates managed in Kubernetes? What is the full lifecycle of certificates? (check again)
 How does mTLS differ from TLS, and where is it used? Can you give an example?
-
 How do you enforce compliance and policies in CI/CD pipelines?
-
 If someone obtains access to a kubeconfig file, can they authenticate to the cluster? How to prevent this?
-
 ###Troubleshooting and Debugging
-
 If everything looks healthy but the application isn’t working, what is your systematic approach to debugging? How do you correlate across layers and tools?
-
 What is the best or basic approach to debug any issue apart from kubectl describe pod and kubectl get logs?
-
 A pod ran for a while and disappeared automatically — how would you debug that?
-
 ###Deployments, Probes, and Lifecycle Management
-
-What are the different deployment strategies (blue-green, canary, rolling, recreate), and when should each be used? Pros and cons?
-
+What are the different deployment strategies (blue-green, canary, rolling, recreate), and when should each be used? Pros and cons? (check again)
 What kind of deployment strategy have you used in your projects? Which is ideal and why?
-
 How do you build a production-grade StatefulSet from scratch — including disruption budgets, storage, backup? What can go wrong?
-
 Have you ever used a sidecar container? In what cases should sidecars be used?
-
 What is the use of a startup probe?
-
-How do you backup a Kubernetes cluster? Is it required if we’re using GitOps?
-
+How do you backup a Kubernetes cluster? Is it required if we’re using GitOps? (check again) 
 For disaster recovery, why isn’t it enough to backup only database data? Why are Kubernetes objects important?
-
 ###Networking and Traffic Management
-
 What are network policies and how do we set them — especially between pods in different namespaces?
-
 If we already use ingress and ingress controllers, why do we still need network policies?
-
 How are you managing traffic in the cluster — using load balancer or other methods?
-
 What kind of load balancer did you choose for the project and why?
-
-What is Istio or service mesh? What role does it play and how is it implemented?
-
+What is Istio or service mesh? What role does it play and how is it implemented? 
+What are the corn or disadvantage of useing service mesh ?
 ###CI/CD and Automation
-
 How do you enforce compliance and policies in CI/CD pipelines?
-
-How do you automate drift detection in the CI/CD process?
-
+How do you automate drift detection in the CI/CD process? (check again)
 ###Advanced Docker Concepts
-
-Apart from multi-stage builds, what are some advanced strategies to reduce Docker image size and improve build performance?
-
+Apart from multi-stage builds, what are some advanced strategies to reduce Docker image size and improve build performance? (check again)
 ###Project and Cluster Insights
-
 Which Kubernetes version are you using in your project?
-
 How many worker nodes are there? What is the architecture of your current setup?
-
 Are you using ingress? Explain the role of ingress controller.
-
 What is a Custom Resource Definition (CRD)? Explain with context.
-
 What is a Cordon in Kubernetes?
