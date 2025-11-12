@@ -1,49 +1,311 @@
-###Kubernetes Architecture and Resource Management
-Why do we need PV, PVC, and StorageClass separately in Kubernetes? What problems would occur if we attached storage directly to pods?
-What happens in production if any of PV, PVC, or StorageClass is misconfigured or missing?
-What should be the approach to determine resource requests and limits? How do you balance performance, cost, and stability?
-What happens if we keep adding pods without considering node capacity? What breaks first?
-How to approach capacity planning for a Kubernetes cluster?
-Though the solutions architect decides nodes and clusters, how can we understand the resources used and why those were chosen (e.g., databases, ASG)?
-Nodes affinity and anti-nodes affinity — when and why should we use them?
-###Security and Compliance
-Why does RBAC exist in Kubernetes? What happens if we don’t configure it properly? (Check again)
-Where is RBAC configured — at namespace level, cluster level, or both? When to use which?
-What security risks exist at the pod level? Why can't we rely only on cluster-level security? 
-What happens if all pods are run as root? What real-world attacks become possible?
-How do we secure a Kubernetes cluster?
-What tools are used to scan Kubernetes YAML files for security?
-How are certificates managed in Kubernetes? What is the full lifecycle of certificates? (check again)
-How does mTLS differ from TLS, and where is it used? Can you give an example?
-How do you enforce compliance and policies in CI/CD pipelines?
-If someone obtains access to a kubeconfig file, can they authenticate to the cluster? How to prevent this?
-###Troubleshooting and Debugging
-If everything looks healthy but the application isn’t working, what is your systematic approach to debugging? How do you correlate across layers and tools?
-What is the best or basic approach to debug any issue apart from kubectl describe pod and kubectl get logs?
-A pod ran for a while and disappeared automatically — how would you debug that?
-###Deployments, Probes, and Lifecycle Management
-What are the different deployment strategies (blue-green, canary, rolling, recreate), and when should each be used? Pros and cons? (check again)
-What kind of deployment strategy have you used in your projects? Which is ideal and why?
-How do you build a production-grade StatefulSet from scratch — including disruption budgets, storage, backup? What can go wrong?
-Have you ever used a sidecar container? In what cases should sidecars be used?
-What is the use of a startup probe?
-How do you backup a Kubernetes cluster? Is it required if we’re using GitOps? (check again) 
-For disaster recovery, why isn’t it enough to backup only database data? Why are Kubernetes objects important?
-###Networking and Traffic Management
+# DevOps Questions - Batch 7
+
+---
+
+## Category 1: Kubernetes Architecture and Resource Management
+
+### Q1: Persistent Storage Architecture
+**Difficulty:** Intermediate | **Time:** 15-20 min
+
+Why do we need PV (PersistentVolume), PVC (PersistentVolumeClaim), and StorageClass separately in Kubernetes? What problems would occur if we attached storage directly to pods?
+
+**Follow-up:** What happens in production if any of PV, PVC, or StorageClass is misconfigured or missing?
+
+**Skills Tested:** K8s storage architecture, abstraction layers, production troubleshooting
+
+---
+
+### Q2: Resource Requests and Limits Strategy
+**Difficulty:** Intermediate-Advanced | **Time:** 20-25 min
+
+What should be the approach to determine resource requests and limits for your applications? How do you balance performance, cost, and stability?
+
+**Skills Tested:** Resource management, capacity planning, cost optimization
+
+---
+
+### Q3: Cluster Capacity Management
+**Difficulty:** Intermediate | **Time:** 15 min
+
+What happens if we keep adding pods without considering node capacity? What breaks first (scheduler, kubelet, node resources)?
+
+**Skills Tested:** Kubernetes scheduling, resource limits, cluster stability
+
+---
+
+### Q4: Capacity Planning
+**Difficulty:** Advanced | **Time:** 25-30 min
+
+How do you approach capacity planning for a Kubernetes cluster? Though the solutions architect decides nodes and clusters, how can you understand the resources used and why those were chosen (e.g., databases, Auto Scaling Groups)?
+
+**Skills Tested:** Capacity planning, resource analysis, infrastructure design
+
+---
+
+### Q5: Node Affinity and Anti-Affinity
+**Difficulty:** Intermediate | **Time:** 15-20 min
+
+Node affinity and anti-node affinity — when and why should we use them? Provide real-world use cases (e.g., spot vs. on-demand instances, GPU nodes, compliance requirements).
+
+**Skills Tested:** Pod scheduling, node selection, cost optimization
+
+---
+
+## Category 2: Security and Compliance
+
+### Q6: RBAC Configuration and Impact
+**Difficulty:** Intermediate | **Time:** 20 min
+
+Why does RBAC (Role-Based Access Control) exist in Kubernetes? What happens if we don't configure it properly?
+
+**Follow-up:** Where is RBAC configured — at namespace level, cluster level, or both? When should you use which?
+
+**Skills Tested:** Kubernetes security, access control, least privilege principle
+
+---
+
+### Q7: Pod-Level Security
+**Difficulty:** Intermediate-Advanced | **Time:** 20-25 min
+
+What security risks exist at the pod level? Why can't we rely only on cluster-level security?
+
+**Follow-up:** What happens if all pods are run as root? What real-world attacks become possible (e.g., container escape, privilege escalation)?
+
+**Skills Tested:** Pod security, container security, threat modeling
+
+---
+
+### Q8: Cluster Security Hardening
+**Difficulty:** Advanced | **Time:** 25-30 min
+
+How do you secure a Kubernetes cluster? Cover multiple layers:
+- Network security
+- Pod security standards/policies
+- Secrets management
+- Image security
+- API server security
+
+**Skills Tested:** Comprehensive security understanding, defense in depth
+
+---
+
+### Q9: Security Scanning Tools
+**Difficulty:** Intermediate | **Time:** 10-15 min
+
+What tools are used to scan Kubernetes YAML files for security vulnerabilities and misconfigurations? (e.g., Trivy, Kubesec, kube-bench, Checkov)
+
+**Skills Tested:** Security tooling, shift-left security, CI/CD integration
+
+---
+
+### Q10: Certificate Management
+**Difficulty:** Advanced | **Time:** 20-25 min
+
+How are certificates managed in Kubernetes? What is the full lifecycle of certificates (generation, distribution, rotation, expiration)?
+
+**Skills Tested:** PKI, certificate management, cert-manager, certificate rotation
+
+---
+
+### Q11: mTLS vs TLS
+**Difficulty:** Intermediate-Advanced | **Time:** 15-20 min
+
+How does mTLS (mutual TLS) differ from TLS, and where is it used? Provide a real-world example (e.g., service mesh, zero-trust networking).
+
+**Skills Tested:** TLS concepts, mutual authentication, service mesh
+
+---
+
+### Q12: CI/CD Policy Enforcement
+**Difficulty:** Intermediate-Advanced | **Time:** 20 min
+
+How do you enforce compliance and policies in CI/CD pipelines? (e.g., OPA/Gatekeeper, admission controllers, policy-as-code)
+
+**Skills Tested:** Policy enforcement, compliance automation, shift-left security
+
+---
+
+### Q13: Kubeconfig Security
+**Difficulty:** Intermediate | **Time:** 15 min
+
+If someone obtains access to a kubeconfig file, can they authenticate to the cluster? How can you prevent unauthorized access? (e.g., certificate expiration, RBAC, audit logging)
+
+**Skills Tested:** Authentication security, credential management, access control
+
+---
+
+## Category 3: Troubleshooting and Debugging
+
+### Q14: Systematic Debugging Approach
+**Difficulty:** Advanced | **Time:** 25-30 min
+
+If everything looks healthy (pods running, services up, health checks passing) but the application isn't working, what is your systematic approach to debugging? How do you correlate issues across layers (application, K8s, network, infrastructure) and tools?
+
+**Skills Tested:** Advanced troubleshooting, root cause analysis, multi-layer debugging
+
+---
+
+### Q15: Beyond Basic Debugging
+**Difficulty:** Intermediate | **Time:** 15-20 min
+
+What is the best or basic approach to debug any issue apart from `kubectl describe pod` and `kubectl logs`? (e.g., kubectl exec, events, metrics, tracing, network debugging)
+
+**Skills Tested:** Debugging techniques, observability, troubleshooting tools
+
+---
+
+### Q16: Pod Disappearance Investigation
+**Difficulty:** Intermediate-Advanced | **Time:** 20 min
+
+A pod ran for a while and disappeared automatically — how would you debug that? What could be the causes? (e.g., OOMKilled, eviction, node failure, CrashLoopBackOff, liveness probe failure)
+
+**Skills Tested:** Pod lifecycle, eviction policies, resource limits, log analysis
+
+---
+
+## Category 4: Deployments, Probes, and Lifecycle Management
+
+### Q17: Deployment Strategies
+**Difficulty:** Intermediate-Advanced | **Time:** 25-30 min
+
+What are the different deployment strategies (blue-green, canary, rolling, recreate), and when should each be used? What are the pros and cons of each?
+
+**Follow-up:** What kind of deployment strategy have you used in your projects? Which is ideal for your use case and why?
+
+**Skills Tested:** Deployment patterns, risk mitigation, release management
+
+---
+
+### Q18: Production-Grade StatefulSet
+**Difficulty:** Advanced | **Time:** 30-40 min
+
+How do you build a production-grade StatefulSet from scratch — including Pod Disruption Budgets, persistent storage, backup strategies, and update policies? What can go wrong and how do you mitigate risks?
+
+**Skills Tested:** Stateful applications, data persistence, high availability, disaster recovery
+
+---
+
+### Q19: Sidecar Container Patterns
+**Difficulty:** Intermediate | **Time:** 15 min
+
+Have you ever used a sidecar container? In what cases should sidecars be used? Provide examples (e.g., logging, proxies, service mesh, secrets management).
+
+**Skills Tested:** Container patterns, microservices architecture, design patterns
+
+---
+
+### Q20: Startup Probe Purpose
+**Difficulty:** Intermediate | **Time:** 10-15 min
+
+What is the use of a startup probe? How does it differ from liveness and readiness probes? When is it essential?
+
+**Skills Tested:** Kubernetes probes, application lifecycle, slow-starting applications
+
+---
+
+### Q21: Kubernetes Cluster Backup
+**Difficulty:** Advanced | **Time:** 20-25 min
+
+How do you backup a Kubernetes cluster? Is it required if we're using GitOps?
+
+**Follow-up:** For disaster recovery, why isn't it enough to backup only database data? Why are Kubernetes objects (etcd, PVs, secrets, configs) important?
+
+**Skills Tested:** Backup strategies, disaster recovery, GitOps limitations, etcd backup
+
+---
+
+## Category 5: Networking and Traffic Management
+
+### Q22: Network Policies
+**Difficulty:** Intermediate | **Time:** 20 min
+
 What are network policies and how do we set them — especially between pods in different namespaces?
-If we already use ingress and ingress controllers, why do we still need network policies?
-How are you managing traffic in the cluster — using load balancer or other methods?
-What kind of load balancer did you choose for the project and why?
-What is Istio or service mesh? What role does it play and how is it implemented? 
-What are the corn or disadvantage of useing service mesh ?
-###CI/CD and Automation
-How do you enforce compliance and policies in CI/CD pipelines?
-How do you automate drift detection in the CI/CD process? (check again)
-###Advanced Docker Concepts
-Apart from multi-stage builds, what are some advanced strategies to reduce Docker image size and improve build performance? (check again)
-###Project and Cluster Insights
-Which Kubernetes version are you using in your project?
-How many worker nodes are there? What is the architecture of your current setup?
-Are you using ingress? Explain the role of ingress controller.
-What is a Custom Resource Definition (CRD)? Explain with context.
-What is a Cordon in Kubernetes?
+
+**Follow-up:** If we already use ingress and ingress controllers, why do we still need network policies?
+
+**Skills Tested:** Network segmentation, zero-trust networking, ingress vs. network policies
+
+---
+
+### Q23: Traffic Management in Cluster
+**Difficulty:** Intermediate | **Time:** 15-20 min
+
+How are you managing traffic in the cluster — using load balancers or other methods?
+
+**Follow-up:** What kind of load balancer did you choose for your project and why? (e.g., Layer 4 vs. Layer 7, cloud provider LB, MetalLB, HAProxy)
+
+**Skills Tested:** Load balancing, traffic routing, cloud architecture
+
+---
+
+### Q24: Service Mesh
+**Difficulty:** Advanced | **Time:** 25-30 min
+
+What is Istio or a service mesh? What role does it play and how is it implemented?
+
+**Follow-up:** What are the cons or disadvantages of using a service mesh? (e.g., complexity, resource overhead, learning curve)
+
+**Skills Tested:** Service mesh concepts, advanced networking, trade-off analysis
+
+---
+
+## Category 6: CI/CD and Automation
+
+### Q25: Compliance in CI/CD
+**Difficulty:** Intermediate-Advanced | **Time:** 20 min
+
+How do you enforce compliance and policies in CI/CD pipelines? (e.g., security scanning, policy validation, automated testing)
+
+**Skills Tested:** CI/CD best practices, automated compliance, policy-as-code
+
+---
+
+### Q26: Drift Detection Automation
+**Difficulty:** Advanced | **Time:** 20-25 min
+
+How do you automate drift detection in the CI/CD process? How do you identify when live cluster state differs from desired state in Git?
+
+**Skills Tested:** GitOps, drift detection, reconciliation, observability
+
+---
+
+## Category 7: Advanced Docker Concepts
+
+### Q27: Docker Image Optimization
+**Difficulty:** Intermediate-Advanced | **Time:** 20-25 min
+
+Apart from multi-stage builds, what are some advanced strategies to reduce Docker image size and improve build performance? (e.g., layer caching, distroless images, scratch images, BuildKit, build caching)
+
+**Skills Tested:** Docker optimization, build performance, image security
+
+---
+
+## Category 8: Project and Cluster Insights
+
+### Q28: Current Kubernetes Setup
+**Difficulty:** Basic-Intermediate | **Time:** 15-20 min
+
+**Multiple-part question:**
+- Which Kubernetes version are you using in your project?
+- How many worker nodes are there? What is the architecture of your current setup?
+- Are you using ingress? Explain the role of an ingress controller.
+
+**Skills Tested:** Real-world experience, architecture understanding, ingress concepts
+
+---
+
+### Q29: Custom Resource Definitions (CRD)
+**Difficulty:** Intermediate-Advanced | **Time:** 15-20 min
+
+What is a Custom Resource Definition (CRD)? Explain with context and provide an example of when you would create a CRD.
+
+**Skills Tested:** Kubernetes extensibility, operators, custom resources
+
+---
+
+### Q30: Node Cordon
+**Difficulty:** Intermediate | **Time:** 10 min
+
+What is a Cordon in Kubernetes? When would you use `kubectl cordon` and `kubectl drain`? What's the difference?
+
+**Skills Tested:** Node maintenance, graceful pod eviction, cluster operations
